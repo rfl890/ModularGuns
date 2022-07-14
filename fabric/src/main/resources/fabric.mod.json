@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "modularguns",
+  "version": "${version}",
+  "name": "ModularGuns Mod",
+  "description": "A modern gun mod for Minecraft",
+  "authors": [
+    "Me!"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "Insert License Here",
+  "icon": "assets/examplemod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.modularmods.modularguns.fabric.ModularGunsFabric"
+    ]
+  },
+  "mixins": [
+    "modularmods.mixins.json"
+  ],
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.19",
+    "architectury": ">=5.7.28"
+  }
+}
