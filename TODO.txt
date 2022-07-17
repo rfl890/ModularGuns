@@ -1,0 +1,6 @@
+- Register BEWLR DynamicItemRenderer instance
+    - BuiltinItemRendererRegistry.INSTANCE.register(ItemGun.instance, ItemGun.gunRenderer);
+    - BEWLR Forge
+- Key bindings (forge/fabric)
+- Item register
+- Client ticks events (forge)
