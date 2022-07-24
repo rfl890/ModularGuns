@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import dev.architectury.platform.Platform;
 import dev.architectury.utils.Env;
+import net.minecraft.client.Minecraft;
 import net.modularmods.modularguns.ModularGuns;
 import net.modularmods.modularguns.common.modular.RenderConfigUtils;
 import net.modularmods.modularguns.common.modular.type.BaseType;
@@ -112,6 +113,7 @@ public class ContentPackManager {
                 ModularGuns.getLogger().info("Content-pack already loaded !");
             }
         }
+        Minecraft.getInstance().delayTextureReload();
     }
 
     /**

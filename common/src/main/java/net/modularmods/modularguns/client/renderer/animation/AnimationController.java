@@ -28,7 +28,7 @@ public class AnimationController {
         this.player = Minecraft.getInstance().player;
     }
 
-    public void onTickRender(float partialTick) {
+    public void compute(float partialTick) {
         GunStateMachine anim = GunRenderer.stateMachine;
         if (this.config == null) return;
 

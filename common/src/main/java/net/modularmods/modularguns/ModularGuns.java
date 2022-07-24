@@ -1,10 +1,8 @@
 package net.modularmods.modularguns;
 
 
-import com.google.common.base.Suppliers;
 import dev.architectury.platform.Platform;
 import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.Registries;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.Item;
 import net.modularmods.modularguns.client.handlers.SmoothSwingTicker;
@@ -13,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.util.function.Supplier;
 
 public class ModularGuns {
 

@@ -1,6 +1,5 @@
 build/
 *.ipr
-run/
 *.iws
 out/
 *.iml
@@ -18,3 +17,6 @@ classes/
 .settings
 *.launch
 *.DS_Store
+
+/fabric/run/*
+!/fabric/run/ModularGuns/

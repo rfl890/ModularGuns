@@ -21,11 +21,11 @@ public class GunRenderConfig {
         public float speed;
 
         public float getStartTime() {
-            return startTime * 0.041666667597f;
+            return startTime * 1/24F;
         }
 
         public float getEndTime() {
-            return endTime * 0.041666667597f;
+            return endTime * 1/24F;
         }
     }
 

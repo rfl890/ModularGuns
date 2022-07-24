@@ -3,7 +3,8 @@
   "package": "net.modularmods.modularguns.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "GameRendererMixin"
+    "GameRendererMixin",
+    "ClientPackSourceMixin"
   ],
   "mixins": [
   ],
