@@ -23,3 +23,14 @@ Primary features:
 - [X] Fully configurable guns
 - [X] Content-pack creation with your customs guns, textures, sounds, models and animations !
 - [X] Good hit detection on server-side
+
+
+# Workspace installation
+The workspace use Architectury API which allows to build a mod for different minecraft modloaders such as Forge and Fabric.
+  - Link: https://github.com/architectury
+
+- To be able to properly runClient for Fabric and Forge **add the following in the program argument**: `--mixin.config gltfloader.mixins.json`
+
+This allows for the GLTFLoader library mod to apply correct patches to Minecraft
+
+- Enjoy coding !
