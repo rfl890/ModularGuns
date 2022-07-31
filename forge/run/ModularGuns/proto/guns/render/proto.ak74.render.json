@@ -1,0 +1,78 @@
+{
+  "modelFileName": "proto.ak74.gltf",
+  "animations": {
+    "draw": {
+      "startTime": 0,
+      "endTime": 25,
+      "speed": 0.04
+    },
+    "default": {
+      "startTime": 107,
+      "speed": 0.04
+    },
+    "aimIn": {
+      "startTime": 44,
+      "endTime": 61,
+      "speed": 0.05
+    },
+    "aimOut": {
+      "startTime": 76,
+      "endTime": 94,
+      "speed": 0.05
+    },
+    "reload": {
+      "startTime": 210,
+      "endTime": 299,
+      "speed": 0.0045
+    },
+    "inspect": {
+      "startTime": 330,
+      "endTime": 438,
+      "speed": 0.004
+    }
+  },
+  "sprint": {
+    "sprintRotate": {
+      "x": 25.0,
+      "y": 70.0,
+      "z": 0.0
+    },
+    "sprintTranslate": {
+      "x": -2.5,
+      "y": -0.5,
+      "z": 1.5
+    }
+  },
+  "aim": {
+    "rotateHipPosition": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "translateHipPosition": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "rotateAimPosition": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "translateAimPosition": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    }
+  },
+  "extra": {
+    "translateAll": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "modelRecoilBackwards": 0.15,
+    "modelRecoilUpwards": 1.0,
+    "modelRecoilShake": 0.5
+  }
+}

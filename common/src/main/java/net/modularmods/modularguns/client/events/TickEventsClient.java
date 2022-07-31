@@ -2,15 +2,11 @@ package net.modularmods.modularguns.client.events;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.modularmods.modularguns.client.GunRenderManager;
+import net.modularmods.modularguns.client.configs.GunRenderConfig;
 import net.modularmods.modularguns.client.mechanics.GunMotion;
 import net.modularmods.modularguns.client.mechanics.RenderSmoother;
-import net.modularmods.modularguns.client.renderer.GunRenderer;
-import net.modularmods.modularguns.client.renderer.RenderParameters;
 import net.modularmods.modularguns.common.items.ItemGun;
-
-import java.lang.reflect.Field;
-
-import static net.modularmods.modularguns.client.renderer.RenderParameters.*;
 
 public class TickEventsClient {
 
@@ -28,11 +24,12 @@ public class TickEventsClient {
      * Callback from the event ClientTickEnd
      */
     public static void clientTickEnd() {
-        GunRenderer.stateMachine.onTickUpdate();
+        GunRenderManager.getInstance().getStateMachine().onTickUpdate();
     }
 
     /**
      * Callback from the RenderTickEvent (Mixin)
+     *
      * @param partialTicks
      */
     public static void renderTickEvent(float partialTicks) {
@@ -49,13 +46,14 @@ public class TickEventsClient {
                     /**
                      * Animation State Machine (Update)
                      */
-                    GunRenderer.stateMachine.update(renderTick);
+                    GunRenderManager.getInstance().getStateMachine().update(renderTick);
 
                     /**
                      * EnhancedGunRendered Updates
                      */
-                    if (GunRenderer.controller != null) {
-                        GunRenderer.controller.compute(renderTick);
+                    GunRenderConfig config = ItemGun.getGunType(player.getMainHandItem()).config;
+                    if (GunRenderManager.getInstance().getController() != null) {
+                        GunRenderManager.getInstance().getController().compute(config, renderTick);
                     }
                 }
             }

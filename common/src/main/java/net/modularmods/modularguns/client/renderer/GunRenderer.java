@@ -11,8 +11,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.modularmods.gltfloader.GLTFLoader;
 import net.modularmods.gltfloader.gltf.RenderedGltfModel;
+import net.modularmods.modularguns.client.GunRenderManager;
 import net.modularmods.modularguns.client.renderer.animation.AnimationController;
-import net.modularmods.modularguns.client.renderer.animation.GunStateMachine;
 import net.modularmods.modularguns.client.renderer.utils.RenderUtils;
 import net.modularmods.modularguns.common.items.ItemGun;
 import net.modularmods.modularguns.common.types.GunType;
@@ -22,25 +22,13 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-
 public class GunRenderer {
 
-    public static AnimationController controller;
-    public static GunStateMachine stateMachine;
-
-    public GunRenderer() {
-        stateMachine = new GunStateMachine();
-    }
-
-    public void render(ItemStack p_108830_, ItemTransforms.TransformType p_108831_, PoseStack p_108832_, MultiBufferSource p_108833_, int p_108834_, int p_108835_) {
+    public static void render(ItemStack p_108830_, ItemTransforms.TransformType p_108831_, PoseStack p_108832_, MultiBufferSource p_108833_, int p_108834_, int p_108835_) {
         if (p_108830_ != null) {
             if (p_108830_.getItem() instanceof ItemGun) {
 
                 GunType gunType = ItemGun.getGunType(p_108830_);
-
-                if (this.controller == null || this.controller.getConfig() != gunType.config) {
-                    this.controller = new AnimationController(gunType.config);
-                }
 
                 int currentVAO = GL11.glGetInteger(GL30.GL_VERTEX_ARRAY_BINDING);
                 int currentArrayBuffer = GL11.glGetInteger(GL15.GL_ARRAY_BUFFER_BINDING);
@@ -151,16 +139,16 @@ public class GunRenderer {
 
                         GLTFLoader.CURRENT_PROGRAM = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
                         if (GLTFLoader.CURRENT_PROGRAM == 0) {
-                            RenderUtils.renderLightTextureWithVanillaCommands(gunType.model, controller.getTime());
+                            RenderUtils.renderLightTextureWithVanillaCommands(gunType.model, GunRenderManager.getInstance().getController().getTime());
                             GL20.glUseProgram(0);
                         } else {
                             GLTFLoader.MODEL_VIEW_MATRIX = GL20.glGetUniformLocation(GLTFLoader.CURRENT_PROGRAM, "modelViewMatrix");
                             if (GLTFLoader.MODEL_VIEW_MATRIX == -1) {
                                 int currentProgram = GLTFLoader.CURRENT_PROGRAM;
-                                RenderUtils.renderLightTextureWithVanillaCommands(gunType.model, controller.getTime());
+                                RenderUtils.renderLightTextureWithVanillaCommands(gunType.model, GunRenderManager.getInstance().getController().getTime());
                                 GL20.glUseProgram(currentProgram);
                             } else {
-                                RenderUtils.renderWithShaderModCommands(gunType.model, controller.getTime());
+                                RenderUtils.renderWithShaderModCommands(gunType.model, GunRenderManager.getInstance().getController().getTime());
                             }
                         }
 

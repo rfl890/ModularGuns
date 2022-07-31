@@ -14,10 +14,11 @@ public class RenderSmoother {
      * to a smoothed 60 FPS partialTicks.
      * This allow to have a smooth animation that is computed
      * at a 60 FPS reference
+     *
      * @param partialTicks
      * @return
      */
-    public static float smooth(float partialTicks){
+    public static float smooth(float partialTicks) {
         float renderTick = partialTicks;
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null) {

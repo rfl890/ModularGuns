@@ -3,15 +3,12 @@ package net.modularmods.modularguns.common.modular.pack;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
-import dev.architectury.platform.Platform;
-import dev.architectury.utils.Env;
 import net.minecraft.client.Minecraft;
 import net.modularmods.modularguns.ModularGuns;
 import net.modularmods.modularguns.common.modular.RenderConfigUtils;
 import net.modularmods.modularguns.common.modular.type.BaseType;
 import net.modularmods.modularguns.common.modular.type.ContentTypes;
 import net.modularmods.modularguns.common.modular.type.TypeEntry;
-import net.modularmods.modularguns.excepts.ExpectRegisterItemRenderer;
 
 import java.io.File;
 import java.io.FileReader;
@@ -70,11 +67,6 @@ public class ContentPackManager {
             baseType.initValues();
             baseType.reloadModel();
         }
-
-        if (Platform.getEnvironment() == Env.CLIENT) {
-            ExpectRegisterItemRenderer.registerItemRenderer();
-        }
-
     }
 
     /**
@@ -113,7 +105,6 @@ public class ContentPackManager {
                 ModularGuns.getLogger().info("Content-pack already loaded !");
             }
         }
-        Minecraft.getInstance().delayTextureReload();
     }
 
     /**

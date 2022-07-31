@@ -7,14 +7,13 @@ import net.modularmods.modularguns.client.renderer.RenderParameters;
 import java.lang.reflect.Field;
 
 import static net.modularmods.modularguns.client.renderer.RenderParameters.*;
-import static net.modularmods.modularguns.client.renderer.RenderParameters.GUN_ROT_Y;
 
 public class GunMotion {
 
     public static Field xRotLast;
     public static Field yRotLast;
 
-    public static void processMotion(){
+    public static void processMotion() {
         GUN_ROT_X_LAST = GUN_ROT_X;
         GUN_ROT_Y_LAST = GUN_ROT_Y;
         GUN_ROT_Z_LAST = GUN_ROT_Z;
@@ -67,7 +66,7 @@ public class GunMotion {
         }
     }
 
-    public static void processGunBalancing(float partialTick){
+    public static void processGunBalancing(float partialTick) {
         LocalPlayer player = Minecraft.getInstance().player;
         float balancing_speed_x = 0.08f * partialTick;
 

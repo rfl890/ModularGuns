@@ -1,10 +1,7 @@
 package net.modularmods.modularguns.client.renderer.animation;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.modularmods.modularguns.client.configs.GunRenderConfig;
 import net.modularmods.modularguns.client.mechanics.GunMotion;
-import net.modularmods.modularguns.client.renderer.RenderParameters;
 import net.modularmods.modularguns.common.types.GunType;
 
 public class GunStateMachine {

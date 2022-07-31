@@ -4,32 +4,39 @@ loaderVersion = "[41,)"
 license = "Insert License Here"
 
 [[mods]]
-modId = "examplemod"
+modId = "modularguns"
 version = "${version}"
-displayName = "Example Mod"
-authors = "Me!"
+displayName = "Modular Guns"
+authors = "Protoxy"
 description = '''
 This is an example description! Tell everyone what your mod is about!
 '''
 #logoFile = ""
 
-[[dependencies.examplemod]]
+[[dependencies.modularguns]]
 modId = "forge"
 mandatory = true
 versionRange = "[41,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.modularguns]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.19,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.modularguns]]
 modId = "architectury"
 mandatory = true
 versionRange = "[5.7.28,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.modularguns]]
+modId = "gltfloader"
+mandatory = true
+versionRange = "*"
 ordering = "AFTER"
 side = "BOTH"

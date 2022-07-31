@@ -30,7 +30,7 @@ public class ContentPack {
 
     public Pack loadContentResourcePack(File file) {
         PackResources packResources;
-        if(isZip){
+        if (isZip) {
             packResources = new FilePackResources(file);
         } else {
             packResources = new FolderPackResources(file);

@@ -11,16 +11,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.modularmods.modularguns.ModularGuns;
+import net.modularmods.modularguns.client.renderer.GunRenderer;
 import net.modularmods.modularguns.common.modular.type.BaseType;
 import net.modularmods.modularguns.common.types.GunType;
 
 public class ItemGun extends Item {
 
     public static ItemGun instance;
+    public static GunRenderer renderer;
 
     public ItemGun() {
-        //super(new Properties().tab(ModularGuns.getInstance().getContentPackManager().getTab()).stacksTo(1));
-        super(new Item.Properties().stacksTo(1));
+        super(new Item.Properties().stacksTo(1).tab(ModularGuns.MAIN_TAB));
         instance = this;
     }
 

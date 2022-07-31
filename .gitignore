@@ -19,4 +19,6 @@ classes/
 *.DS_Store
 
 /fabric/run/*
+/forge/run/*
 !/fabric/run/ModularGuns/
+!/forge/run/ModularGuns/

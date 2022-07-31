@@ -1,5 +1,6 @@
 package net.modularmods.modularguns.common.modular.type;
 
+import dev.architectury.registry.item.ItemPropertiesRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -31,14 +32,15 @@ public class ContentTypes {
         values.add(new TypeEntry(name, typeClass, typeId));
 
         try {
-            Registry.register(Registry.ITEM, new ResourceLocation(ModularGuns.MOD_ID, name), itemClass.getDeclaredConstructor().newInstance());
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
+            ModularGuns.ITEMS.register(name, () -> {
+                try {
+                    return itemClass.getDeclaredConstructor().newInstance();
+                } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            });
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
     }

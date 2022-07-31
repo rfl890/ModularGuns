@@ -1,15 +1,10 @@
 package net.modularmods.modularguns.client.renderer.animation;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
+import net.modularmods.modularguns.client.GunRenderManager;
 import net.modularmods.modularguns.client.configs.GunRenderConfig;
-import net.modularmods.modularguns.client.renderer.GunRenderer;
 
 public class AnimationController {
-
-    final LocalPlayer player;
-
-    private GunRenderConfig config;
 
     private ActionPlayback playback;
 
@@ -21,16 +16,14 @@ public class AnimationController {
 
     public static int oldCurrentItem;
 
-    public AnimationController(GunRenderConfig config) {
-        this.config = config;
-        this.playback = new ActionPlayback(config);
+    public AnimationController() {
+        this.playback = new ActionPlayback();
         this.playback.action = AnimationType.DEFAULT;
-        this.player = Minecraft.getInstance().player;
     }
 
-    public void compute(float partialTick) {
-        GunStateMachine anim = GunRenderer.stateMachine;
-        if (this.config == null) return;
+    public void compute(GunRenderConfig config, float partialTick) {
+        GunStateMachine anim = GunRenderManager.getInstance().getStateMachine();
+        if (config == null) return;
 
         /** DRAW **/
         float drawSpeed = config.animations.get(AnimationType.DRAW).speed * partialTick;
@@ -38,7 +31,7 @@ public class AnimationController {
 
         /** INSPECT **/
         float inspectSpeed = config.animations.get(AnimationType.INSPECT).speed * partialTick;
-        float valInspect = (player.isShiftKeyDown()) ? INSPECT + inspectSpeed : 0;
+        float valInspect = (Minecraft.getInstance().player.isShiftKeyDown()) ? INSPECT + inspectSpeed : 0;
         INSPECT = Math.max(0F, Math.min(1F, valInspect));
 
         /** ADS **/
@@ -49,14 +42,14 @@ public class AnimationController {
 
         /** SPRINT **/
         float sprintSpeed = 0.15f * partialTick;
-        float sprintValue = (player.isSprinting()) ? SPRINT + sprintSpeed : SPRINT - sprintSpeed;
+        float sprintValue = (Minecraft.getInstance().player.isSprinting()) ? SPRINT + sprintSpeed : SPRINT - sprintSpeed;
         if (anim.gunRecoil > 0.1F) {
             sprintValue = SPRINT - sprintSpeed * 3f;
         }
 
         SPRINT = Math.max(0, Math.min(1, sprintValue));
 
-        if (DRAW > 0F && DRAW < 1F && (oldCurrentItem != player.getInventory().selected)) {
+        if (DRAW > 0F && DRAW < 1F && (oldCurrentItem != Minecraft.getInstance().player.getInventory().selected)) {
             this.playback.action = AnimationType.DRAW;
         } else if (ADS > 0F && Minecraft.getInstance().mouseHandler.isRightPressed()) {
             this.playback.action = AnimationType.AIM_IN;
@@ -70,38 +63,38 @@ public class AnimationController {
             this.playback.action = AnimationType.DEFAULT;
         }
 
-        if (oldCurrentItem != player.getInventory().selected) {
+        if (oldCurrentItem != Minecraft.getInstance().player.getInventory().selected) {
             DRAW = 0;
-            oldCurrentItem = player.getInventory().selected;
+            oldCurrentItem = Minecraft.getInstance().player.getInventory().selected;
         }
 
-        updateTime();
+        updateTime(config);
     }
 
 
-    public void updateTime() {
+    public void updateTime(GunRenderConfig config) {
         switch (this.playback.action) {
             case DEFAULT:
-                this.playback.time = this.config.animations.get(AnimationType.DEFAULT).getStartTime();
+                this.playback.time = config.animations.get(AnimationType.DEFAULT).getStartTime();
                 break;
             case DRAW:
-                this.playback.updateTime(DRAW);
+                this.playback.updateTime(config, DRAW);
                 if (this.playback.hasPlayed) {
-                    oldCurrentItem = player.getInventory().selected;
+                    oldCurrentItem = Minecraft.getInstance().player.getInventory().selected;
                     DRAW = 0F;
                 }
                 break;
             case AIM_IN:
-                this.playback.updateTime(ADS);
+                this.playback.updateTime(config, ADS);
                 break;
             case AIM_OUT:
-                this.playback.updateTime(1F - ADS);
+                this.playback.updateTime(config, 1F - ADS);
                 break;
             case RELOAD:
-                this.playback.updateTime(RELOAD);
+                this.playback.updateTime(config, RELOAD);
                 break;
             case INSPECT:
-                this.playback.updateTime(INSPECT);
+                this.playback.updateTime(config, INSPECT);
                 break;
 
         }
@@ -110,13 +103,4 @@ public class AnimationController {
     public float getTime() {
         return playback.time;
     }
-
-    public void setConfig(GunRenderConfig config) {
-        this.config = config;
-    }
-
-    public GunRenderConfig getConfig() {
-        return this.config;
-    }
-
 }

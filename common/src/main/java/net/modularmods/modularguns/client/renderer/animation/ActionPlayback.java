@@ -11,13 +11,10 @@ public class ActionPlayback {
 
     public boolean hasPlayed;
 
-    private GunRenderConfig config;
-
-    public ActionPlayback(GunRenderConfig config) {
-        this.config = config;
+    public ActionPlayback() {
     }
 
-    public void updateTime(float alpha) {
+    public void updateTime(GunRenderConfig config, float alpha) {
         float startTime = config.animations.get(action).getStartTime();
         float endTime = config.animations.get(action).getEndTime();
         this.time = Interpolation.LINEAR.interpolate(startTime, endTime, alpha);
